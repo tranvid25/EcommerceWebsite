@@ -1,0 +1,52 @@
+import React from 'react';
+import styles from './styles.module.scss';
+import Boxicon from './Boxicon/Boxicon';
+import { dataBoxIcon, dataBoxIcon2, dataMenu } from './constants';
+import Menu from './Menu/Menu';
+import Boxicon2 from './Boxicon/Boxicon2';
+import Logo from '@iconPng/name.png';
+function Header() {
+  const {
+    containerBoxIcon,
+    containerMenu,
+    containerHeader,
+    containerBox,
+    logo,
+    container
+  } = styles;
+  return (
+    <div className={container}>
+      <div className={containerHeader}>
+        <div className={containerBox}>
+          <div className={containerBoxIcon}>
+            {dataBoxIcon.map((item) => {
+              return <Boxicon type={item.type} href={item.href}></Boxicon>;
+            })}
+          </div>
+          <div className={containerMenu}>
+            {dataMenu.slice(0, 3).map((item) => {
+              return <Menu content={item.content} href={item.href}></Menu>;
+            })}
+          </div>
+        </div>
+        <div>
+          <img src={Logo} alt='' className={logo} />
+        </div>
+        <div className={containerBox}>
+          <div className={containerMenu}>
+            {dataMenu.slice(3).map((item) => {
+              return <Menu content={item.content} href={item.href}></Menu>;
+            })}
+          </div>
+          <div className={containerBoxIcon}>
+            {dataBoxIcon2.map((item) => {
+              return <Boxicon2 type={item.type} href={item.href}></Boxicon2>;
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Header;
