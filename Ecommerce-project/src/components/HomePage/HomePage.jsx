@@ -11,6 +11,8 @@ function HomePage() {
         <Header></Header>
         <Banner></Banner>
         <Layout></Layout>
+        <Info/>
+        
       </div>
     </div>
   );
