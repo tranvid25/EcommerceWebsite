@@ -3,7 +3,9 @@ import  styles from './styles.module.scss';
 function Layout({ children }) {
   const {wraplayout,container}=styles
   return (
-    <div></div>
+    <div className={container}>
+      {children}
+    </div>
     
   );
 }

@@ -1,20 +1,23 @@
 @import '@styles/mixins.module.scss';
 
-.container{
-    background-image: url(../../assets/icon/images/Banner.jpeg);
-    min-height: 750px;
-    background-repeat: no-repeat;
-    @include flex_box_custom(center,center,0px);
+.container {
+  background-image: url(../../assets/icon/images/Banner.jpeg);
+  min-height: 750px;
+  background-repeat: no-repeat;
+  background-position:center ;
+  background-size:cover;
+  @include flex_box_custom(center, center, 0px);
+  margin-top: -180px;
 }
-.content{
- @include flex_box_custom(center,center,10px);
- flex-direction: column;
+.content {
+  @include flex_box_custom(center, center, 10px);
+  flex-direction: column;
 }
-.title{
-    font-size: 40px;
-    font-weight: 400;
-    margin:15px 0;
+.title {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 15px 0;
 }
-.des{
-    margin-bottom: 15px;
+.des {
+  margin-bottom: 15px;
 }
