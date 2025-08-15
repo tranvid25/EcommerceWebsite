@@ -1,0 +1,25 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+.timerWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.box {
+  background-color: #fff;
+  padding:5px 5px;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.number {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+.title {
+  font-size: 14px;
+  color: $secondary_color;
+}
