@@ -8,6 +8,7 @@ import Info from '@components/Info/Info';
 import HeadingListProducts from '@components/HeadingListProducts/HeadingListProducts';
 import { getProduct } from '@/apis/productsService';
 import PopularProduct from '@components/PopularProduct/PopularProduct';
+import SaleHomePage from '@components/SaleHomePage/SaleHomePage';
 function HomePage() {
   const { container } = styles;
   const [ListProducts,setListProducts]=useState([]);
@@ -21,11 +22,11 @@ function HomePage() {
       <div className={container}>
         <Header></Header>
         <Banner></Banner>
-        <Layout></Layout>
         <Info/>
         <AdvanceHealing/>
         <HeadingListProducts data={ListProducts.slice(0,2)}/>
         <PopularProduct data={ListProducts.slice(2,ListProducts.length)}/>
+        <SaleHomePage/>
       </div>
     </div>
   );
