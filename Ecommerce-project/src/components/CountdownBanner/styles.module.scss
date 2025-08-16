@@ -7,11 +7,12 @@
     background-size: cover;
 }
 .containerContent{
-    margin-top:200px;
     @include flex_box_custom(center,center,10px);
     flex-direction: column;
 }
-
+.containertimer{
+    margin-top: 150px
+}
 .title{
     @include flex_box_custom(center,center,10px);
     flex-direction: column;
