@@ -1,0 +1,19 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+
+.container{
+    @include flex_box_custom(center,center,15px);
+    flex-direction: column;
+    background-color: #252525;
+    height: 400px;
+    width: 100%;
+    color: white;
+    margin-top: 50px;
+}
+.content{
+    @include flex_box_custom(center,center,20px);
+    padding-bottom: 20px;
+}
+.boxImg{
+    padding-bottom: 20px;
+}

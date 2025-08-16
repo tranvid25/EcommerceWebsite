@@ -9,6 +9,7 @@ import HeadingListProducts from '@components/HeadingListProducts/HeadingListProd
 import { getProduct } from '@/apis/productsService';
 import PopularProduct from '@components/PopularProduct/PopularProduct';
 import SaleHomePage from '@components/SaleHomePage/SaleHomePage';
+import Footer from '@components/Footer/Footer';
 function HomePage() {
   const { container } = styles;
   const [ListProducts,setListProducts]=useState([]);
@@ -27,6 +28,7 @@ function HomePage() {
         <HeadingListProducts data={ListProducts.slice(0,2)}/>
         <PopularProduct data={ListProducts.slice(2,ListProducts.length)}/>
         <SaleHomePage/>
+        <Footer/>
       </div>
     </div>
   );
