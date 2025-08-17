@@ -1,13 +1,21 @@
-import { useState } from 'react';
+// App.jsx
+import { Suspense, useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import routers from '@/routers/routers';
+import Loading from '@components/Loading/Loading';
+import AppLoader from '@components/Loading/AppLoader';
 
-import './App.css';
-import HomePage from '@components/HomePage/HomePage';
-import Info from '@components/Info/Info';
 function App() {
   return (
-    <>
-      <HomePage></HomePage>
-    </>
+    <AppLoader>
+      <BrowserRouter>
+        <Routes>
+          {routers.map((item, index) => (
+            <Route path={item.path} element={<item.component />} key={index} />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </AppLoader>
   );
 }
 

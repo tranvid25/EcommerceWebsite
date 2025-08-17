@@ -25,7 +25,7 @@ function SaleHomePage() {
   };
 
   const handleTranslateX = () => {
-    if (scrollDirection === 'down' && scrollPosition >= 1500) {
+    if (scrollDirection === 'down' && scrollPosition >= 1600) {
       setLeftX(leftX >= 0 ? 0 : leftX + 1);
       setRightX(rightX <= 0 ? 0 : rightX - 1);
     } else if (scrollDirection === 'up') {

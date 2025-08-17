@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Boxicon from './Boxicon/Boxicon';
 import { dataBoxIcon, dataBoxIcon2, dataMenu } from './constants';
@@ -12,10 +12,18 @@ function Header() {
     containerHeader,
     containerBox,
     logo,
-    container
+    container,scrolled
   } = styles;
+  const[isScrolled,setIsScrolled]=useState(false);
+  useEffect(()=>{
+    const handleScroll=()=>{
+      setIsScrolled(window.scrollY>50);
+    };
+    window.addEventListener("scroll",handleScroll);
+    return ()=>window.removeEventListener("scroll",handleScroll);
+  },[]);
   return (
-    <div className={container}>
+    <div className={`${container} ${isScrolled ? scrolled : ""}`}>
       <div className={containerHeader}>
         <div className={containerBox}>
           <div className={containerBoxIcon}>
