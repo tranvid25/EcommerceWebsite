@@ -13,6 +13,7 @@ function SideBar() {
     <div className={container}>
       <div
         className={classNames({
+          //classNames dùng dể thêm class
           [overlay]: isOpen,
         })}
         onClick={handleToggle}
