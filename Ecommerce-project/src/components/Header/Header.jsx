@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Boxicon from './Boxicon/Boxicon';
 import { dataBoxIcon, dataBoxIcon2, dataMenu } from './constants';
 import Menu from './Menu/Menu';
 import Boxicon2 from './Boxicon/Boxicon2';
 import Logo from '@iconPng/name.png';
+import { SideBarContext } from '@/contexts/SideBarProvider';
 function Header() {
   const {
     containerBoxIcon,
@@ -12,18 +13,21 @@ function Header() {
     containerHeader,
     containerBox,
     logo,
-    container,scrolled
+    container,
+    scrolled,
   } = styles;
-  const[isScrolled,setIsScrolled]=useState(false);
-  useEffect(()=>{
-    const handleScroll=()=>{
-      setIsScrolled(window.scrollY>50);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll",handleScroll);
-    return ()=>window.removeEventListener("scroll",handleScroll);
-  },[]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  const { isOpen, setIsOpen } = useContext(SideBarContext);
+  console.log(isOpen);
   return (
-    <div className={`${container} ${isScrolled ? scrolled : ""}`}>
+    <div className={`${container} ${isScrolled ? scrolled : ''}`}>
       <div className={containerHeader}>
         <div className={containerBox}>
           <div className={containerBoxIcon}>
@@ -33,7 +37,13 @@ function Header() {
           </div>
           <div className={containerMenu}>
             {dataMenu.slice(0, 3).map((item) => {
-              return <Menu content={item.content} href={item.href}></Menu>;
+              return (
+                <Menu
+                  content={item.content}
+                  href={item.href}
+                  setIsOpen={setIsOpen}
+                ></Menu>
+              );
             })}
           </div>
         </div>
