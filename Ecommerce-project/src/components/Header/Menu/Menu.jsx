@@ -5,8 +5,13 @@ import { SideBarContext } from '@/contexts/SideBarProvider';
 function Menu({ content, href }) {
   const { menu } = styles;
   const {setIsOpen}=useContext(SideBarContext);
+  const handleClickShowLogin=()=>{
+    if(content === 'Sign In'){
+      setIsOpen(true);
+    }
+  }
   return (
-    <div className={menu} onClick={() => setIsOpen(true)}>
+    <div className={menu} onClick={handleClickShowLogin}>
       {content}
     </div>
   );

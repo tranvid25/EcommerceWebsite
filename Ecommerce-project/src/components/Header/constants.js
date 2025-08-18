@@ -9,7 +9,7 @@ const dataMenu=[
     {content:'About Us',href:'#'},
     {content:'Contact',href:'#'},
     {content:'Search',href:'#'},
-    {content:'SignIn',href:'#'},
+    {content:'Sign In',href:'#'},
 ];
 const dataBoxIcon2=[
     {type:'cart',href:'#'},

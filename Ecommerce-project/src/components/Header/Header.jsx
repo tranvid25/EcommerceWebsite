@@ -25,7 +25,6 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const { isOpen, setIsOpen } = useContext(SideBarContext);
-  console.log(isOpen);
   return (
     <div className={`${container} ${isScrolled ? scrolled : ''}`}>
       <div className={containerHeader}>

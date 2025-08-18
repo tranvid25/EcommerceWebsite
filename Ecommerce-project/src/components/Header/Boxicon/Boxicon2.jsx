@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from '../styles.module.scss';
-import carticon from '@icon/carticon.svg';
-import hearticon from '@icon/hearticon.svg';
-import reloadicon from '@icon/reloadicon.svg';
+import carticon from '@icon/carticon.min.svg';
+import hearticon from '@icon/hearticon.min.svg';
+import reloadicon from '@icon/reloadicon.min.svg';
 function Boxicon2({type,href}) {
     const {boxIcon}=styles;
     const handleRenderIcon=(type)=>{
