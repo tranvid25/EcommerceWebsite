@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import carticon from '@icon/carticon.svg';
 import hearticon from '@icon/hearticon.svg';
 import reloadicon from '@icon/reloadicon.svg';
+import truckicon from '@icon/truckicon.svg';
 function ProductItem({ src, prevSrc, name, price }) {
   const {
     boxImg,
@@ -31,7 +32,7 @@ function ProductItem({ src, prevSrc, name, price }) {
             <img src={reloadicon} alt='' />
           </div>
           <div className={boxIcon}>
-            <img src={carticon} alt='' />
+            <img src={truckicon} alt='' />
           </div>
         </div>
         <div className={title}>{name}</div>

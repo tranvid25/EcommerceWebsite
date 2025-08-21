@@ -1,0 +1,25 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+.container {
+  padding: 20px 20px;
+  @include flex_box_custom(space-between, space-between, 0px);
+  flex-direction: column;
+  height: 100vh;
+  .boxButton {
+    width: 90%;
+    @include flex_box_custom(center, center, 5px);
+    flex-direction: column;
+    position: absolute;
+    bottom: 30px;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  .content {
+    @include flex_box_custom(space-between, flex-end, 20px);
+    width: 100%;
+  }
+  .title {
+    font-size: 14px;
+    font-weight: 300;
+  }
+}

@@ -1,0 +1,32 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+.container{
+    position: relative;
+    margin-top: 40px;
+    padding: 20px;
+    @include flex_box_custom(center,flex-start,25px);
+    img{
+        width: 70px;
+    }
+    .content{
+        @include flex_box_custom(center,flex-start,10px);
+        flex-direction: column;
+    }
+    .Close{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        opacity: 0;
+        
+    }
+    .price{
+        font-weight: 300;
+    }
+    &:hover{
+        background-color: #f7f7f7;
+        .Close{
+            opacity: 1;
+        }
+    }
+}

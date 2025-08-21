@@ -85,3 +85,14 @@
     }
   }
 }
+.buttonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  button {
+    flex: 1;
+    margin: 0 5px;
+  }
+}

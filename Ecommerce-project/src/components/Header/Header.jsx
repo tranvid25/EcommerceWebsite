@@ -24,7 +24,11 @@ function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const { isOpen, setIsOpen } = useContext(SideBarContext);
+  const { setIsOpen,setType } = useContext(SideBarContext);
+  const handleOpenSideBar=(type)=>{
+    setIsOpen(true);
+    setType(type)
+  }
   return (
     <div className={`${container} ${isScrolled ? scrolled : ''}`}>
       <div className={containerHeader}>
@@ -52,12 +56,12 @@ function Header() {
         <div className={containerBox}>
           <div className={containerMenu}>
             {dataMenu.slice(3).map((item) => {
-              return <Menu content={item.content} href={item.href}></Menu>;
+              return <Menu content={item.content} href={item.href} type={item.type}></Menu>;
             })}
           </div>
           <div className={containerBoxIcon}>
             {dataBoxIcon2.map((item) => {
-              return <Boxicon2 type={item.type} href={item.href}></Boxicon2>;
+              return <Boxicon2 type={item.type} href={item.href} onClick={() => handleOpenSideBar(item.type)}></Boxicon2>;
             })}
           </div>
         </div>
