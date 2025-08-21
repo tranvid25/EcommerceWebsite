@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from '../styles.module.scss';
-import fbicon from '@icon/fbicon.svg';
-import insicon from '@icon/insicon.svg';
-import ybicon from '@icon/ybicon.svg';
+import fbicon from '@icon/fbicon.min.svg';
+import insicon from '@icon/insicon.min.svg';
+import ybicon from '@icon/ybicon.min.svg';
 function Boxicon({type,href}) {
     const {boxIcon}=styles;
     const handleRenderIcon=(type)=>{

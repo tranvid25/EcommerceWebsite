@@ -8,8 +8,8 @@ const dataMenu=[
     {content:'Our Shop',href:'#'},
     {content:'About Us',href:'#'},
     {content:'Contact',href:'#'},
-    {content:'Search',href:'#'},
-    {content:'SignIn',href:'#'},
+    {content:'Search',type:'search',href:'#'},
+    {content:'Sign In',type:'login',href:'#'},
 ];
 const dataBoxIcon2=[
     {type:'cart',href:'#'},
