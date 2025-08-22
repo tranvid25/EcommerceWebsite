@@ -8,68 +8,95 @@
   margin: 0 auto;
   padding: 30px 20px;
 }
-.header{
-    @include flex_box_custom(center,center,10px);
-    flex-direction: column;
-}
-.header span {
-  font-size: 20px;
-  font-weight: 400;
-  text-transform: uppercase;
-  position: relative;
-  color: #333;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px;      /* cách chữ một chút */
-    width: 0;          /* ban đầu chưa có gì */
-    height: 2px;
-    background-color: #333;
-    transition: width 0.3s ease;
-  }
+.header {
+  @include flex_box_custom(center, center, 10px);
+  flex-direction: column;
 
-  /* Hover mới chạy hiệu ứng */
-  &:hover::after {
-    width: 100%;
+  span {
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: relative;
+    color: #333;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: #333;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
   }
 }
+
 .boxIcon {
   width: 23px;
   height: 23px;
+
 }
 
 .inputEmail,
 .inputPassword {
+  padding-bottom: 20px;
+}
+.inputPassword input,
+.inputEmail input {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  padding: 10px 40px 10px 10px; // 40px cho icon bên phải
+  box-sizing: border-box; // giữ width cố định
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 
-  label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-  }
-
-  input {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    &:focus {
-      outline: none;
-      border-color: #333;
-    }
+  &:focus {
+    outline: none;
+    border-color: #333;
   }
 }
+
+.inputPassword .showHideIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 .checkbox {
   width: 100%;
   display: flex;
   gap: 6px;
-  font-size: 17px;
+  font-size: 14px;
+  align-items: center;
+
+  input {
+    width: auto;
+    margin: 0;
+  }
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.buttonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  button {
+    flex: 1;
+    margin: 0 5px;
+  }
 }
 
 .footer {
@@ -85,14 +112,9 @@
     }
   }
 }
-.buttonWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-
-  button {
-    flex: 1;
-    margin: 0 5px;
-  }
+.errorText {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  
 }
