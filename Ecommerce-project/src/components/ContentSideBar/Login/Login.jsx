@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { RxAvatar } from 'react-icons/rx';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { LuEye } from 'react-icons/lu';
@@ -6,8 +6,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '@components/Button/Button';
 import styles from './styles.module.scss';
-import { use } from 'react';
-
+import { ToastContext } from '@/contexts/ToastProvider';
+import { register, signIn } from '@/apis/authService';
+import Cookies from 'js-cookie';
 function Login() {
   const {
     container,
@@ -20,9 +21,10 @@ function Login() {
     footer,
     errorText,
   } = styles;
-
+  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
+  const { toast } = useContext(ToastContext);
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: Yup.object({
@@ -32,12 +34,41 @@ function Login() {
       password: Yup.string()
         .min(6, 'Password must be at least 6 characters')
         .required('Password is required'),
-      confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        .required('Confirm Password is required'),
+      confirmPassword: Yup.string().oneOf(
+        [Yup.ref('password'), null],
+        'Passwords must match'
+      ),
     }),
-    onSubmit: (values) => {
-      console.log('Login values:', values);
+    onSubmit: async (values) => {
+      if (isLoading) return;
+      const { email: username, password } = values;
+      if (isRegister) {
+        setIsLoading(true);
+        await register({ username, password })
+          .then((res) => {
+            toast.success(res.data.message);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            toast.error(err.response.data.message);
+            setIsLoading(false);
+          });
+      }
+      if (!isRegister) {
+        setIsLoading(true);
+        await signIn({ username, password })
+          .then((res) => {
+            toast.success(res.data.message);
+            setIsLoading(false);
+            const { id, token, refreshToken } = res.data;
+            Cookies.set('token', token);
+            Cookies.set('refreshToken', refreshToken);
+          })
+          .catch((err) => {
+            toast.error(err.response.data.message);
+            setIsLoading(false);
+          });
+      }
     },
   });
   const handleToggle = () => {
@@ -140,7 +171,12 @@ function Login() {
 
         {/* Submit button */}
         <div className={buttonWrapper}>
-          <Button type='submit' content={isRegister ? 'REGISTER' : 'LOGIN'} />
+          <Button
+            type='submit'
+            content={
+              isLoading ? 'LOADING...' : isRegister ? 'REGISTER' : 'LOGIN'
+            }
+          />
         </div>
       </form>
       <Button
