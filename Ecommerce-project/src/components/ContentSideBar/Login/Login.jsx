@@ -9,6 +9,9 @@ import styles from './styles.module.scss';
 import { ToastContext } from '@/contexts/ToastProvider';
 import { register, signIn } from '@/apis/authService';
 import Cookies from 'js-cookie';
+import { SideBarContext } from '@/contexts/SideBarProvider';
+import { StoreContext } from '@/contexts/storeProvider';
+
 function Login() {
   const {
     container,
@@ -25,6 +28,8 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const { toast } = useContext(ToastContext);
+  const{setIsOpen}=useContext(SideBarContext);
+  const { setUserId } = useContext(StoreContext);
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: Yup.object({
@@ -58,15 +63,19 @@ function Login() {
         setIsLoading(true);
         await signIn({ username, password })
           .then((res) => {
-            toast.success(res.data.message);
+            
             setIsLoading(false);
             const { id, token, refreshToken } = res.data;
+            setUserId(res.data.id);
             Cookies.set('token', token);
             Cookies.set('refreshToken', refreshToken);
+            Cookies.set('userId', id);
+            toast.success('Sign in successfully');
+            setIsOpen(false);
           })
           .catch((err) => {
-            toast.error(err.response.data.message);
             setIsLoading(false);
+            toast.error(err.response.data.message);
           });
       }
     },

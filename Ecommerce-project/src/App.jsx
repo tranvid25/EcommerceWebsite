@@ -7,27 +7,30 @@ import AppLoader from '@components/Loading/AppLoader';
 import SideBar from '@components/SideBar/SideBar';
 import { SideBarProvider } from '@/contexts/SideBarProvider';
 import ToastProvider from '@/contexts/ToastProvider';
+import { StoreContextProvider } from '@/contexts/storeProvider';
 
 function App() {
   return (
-    <ToastProvider>
-      <AppLoader>
-        <SideBarProvider>
-          <SideBar />
-          <BrowserRouter>
-            <Routes>
-              {routers.map((item, index) => (
-                <Route
-                  path={item.path}
-                  element={<item.component />}
-                  key={index}
-                />
-              ))}
-            </Routes>
-          </BrowserRouter>
-        </SideBarProvider>
-      </AppLoader>
-    </ToastProvider>
+    <StoreContextProvider>
+      <ToastProvider>
+        <AppLoader>
+          <SideBarProvider>
+            <SideBar />
+            <BrowserRouter>
+              <Routes>
+                {routers.map((item, index) => (
+                  <Route
+                    path={item.path}
+                    element={<item.component />}
+                    key={index}
+                  />
+                ))}
+              </Routes>
+            </BrowserRouter>
+          </SideBarProvider>
+        </AppLoader>
+      </ToastProvider>
+    </StoreContextProvider>
   );
 }
 
