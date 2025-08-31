@@ -7,6 +7,7 @@ import Login from '@components/ContentSideBar/Login/Login';
 import Compare from '@components/ContentSideBar/Compare/Compare';
 import Cart from '@components/ContentSideBar/Cart/Cart';
 import Heart from '@components/ContentSideBar/Heart/Heart';
+import { useNavigate } from 'react-router-dom';
 function SideBar() {
   const { overlay, container, sideBar, slideSideBar, boxIcon } = styles;
   const { isOpen, setIsOpen,type } = useContext(SideBarContext);

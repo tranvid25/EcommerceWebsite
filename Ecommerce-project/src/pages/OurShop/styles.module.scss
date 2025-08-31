@@ -1,0 +1,17 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+.container{
+    width: 100%;
+    padding-top: 83px;
+    .functionBox{
+        @include flex_box_custom(space-between,center, 0);
+        font-size: 14px;
+        font-weight: 300;
+        .btnMark{
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

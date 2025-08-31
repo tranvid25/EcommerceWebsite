@@ -7,7 +7,7 @@
   background-position:center ;
   background-size:cover;
   @include flex_box_custom(center, center, 0px);
-  margin-top: -180px;
+  margin-top: -100px;
 }
 .content {
   @include flex_box_custom(center, center, 10px);
