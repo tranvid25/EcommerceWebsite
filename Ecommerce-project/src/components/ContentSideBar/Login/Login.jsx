@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import Button from '@components/Button/Button';
 import styles from './styles.module.scss';
 import { ToastContext } from '@/contexts/ToastProvider';
-import { register, signIn } from '@/apis/authService';
+import { register, signIn,getInfo} from '@/apis/authService';
 import Cookies from 'js-cookie';
 import { SideBarContext } from '@/contexts/SideBarProvider';
 import { StoreContext } from '@/contexts/storeProvider';
@@ -28,8 +28,8 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const { toast } = useContext(ToastContext);
-  const{setIsOpen}=useContext(SideBarContext);
-  const { setUserId } = useContext(StoreContext);
+  const { setIsOpen } = useContext(SideBarContext);
+  const { setUserId, setUserInfo } = useContext(StoreContext);
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: Yup.object({
@@ -62,14 +62,24 @@ function Login() {
       if (!isRegister) {
         setIsLoading(true);
         await signIn({ username, password })
-          .then((res) => {
-            
+          .then(async (res) => {
             setIsLoading(false);
             const { id, token, refreshToken } = res.data;
-            setUserId(res.data.id);
-            Cookies.set('token', token);
-            Cookies.set('refreshToken', refreshToken);
+
+            Cookies.set('token', token, { expires: 1 });
+            Cookies.set('refreshToken', refreshToken, { expires: 7 });
             Cookies.set('userId', id);
+
+            setUserId(id);
+
+            // 🔥 Gọi lại API để lấy user info chính xác
+            try {
+              const userRes = await getInfo(id);
+              setUserInfo(userRes.data.data);
+            } catch (err) {
+              console.log(err);
+            }
+
             toast.success('Sign in successfully');
             setIsOpen(false);
           })

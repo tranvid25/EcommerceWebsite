@@ -3,11 +3,13 @@ import ProductItem from '@components/ProductItem/ProductItem';
 import React, { useContext } from 'react';
 import { OurShopContext } from '@/contexts/OurShopProvider';
 import styles from './styles.module.scss';
+import Button from '@components/Button/Button';
 function ListProduct() {
-  const { containerProduct } = styles;
-  const { products,isShowGrid } = useContext(OurShopContext);
+  const { containerProduct, sectionListProduct, dotsLoader,BtnLoadMore } = styles;
+  const { products, isShowGrid, isLoading, handleLoadMore, total, isLoadMore } =
+    useContext(OurShopContext);
   return (
-    <>
+    <div className={sectionListProduct}>
       <Layout>
         <div className={containerProduct}>
           {products.map((item) => (
@@ -24,7 +26,24 @@ function ListProduct() {
           ))}
         </div>
       </Layout>
-    </>
+      {products.length < total && (
+        <div>
+          {isLoadMore ? (
+            <div className={dotsLoader}>
+              <button className={BtnLoadMore}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          ) : (
+            <div style={{ width: '200px', margin: '0 auto' }}>
+              <Button content={'Load More Product'} onClick={handleLoadMore} />
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

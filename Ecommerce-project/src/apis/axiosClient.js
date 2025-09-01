@@ -23,18 +23,25 @@ axiosClient.interceptors.response.use(
   (response) => {
     return response;
   },
-  async(error) => {
-    const originalRequest=error.config;
+  async (error) => {
+    const originalRequest = error.config;
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       // window.location.href = '/login';
-      const refreshToken=Cookies.get('refreshToken');
-      if(!refreshToken) return Promise.reject(error);
+      const res = await axios.post(
+        'https://be-project-reactjs.onrender.com/api/v1/refreshToken',
+        {
+          token: refreshToken,
+        }
+      );
+      if (!refreshToken) return Promise.reject(error);
       try {
-        const res=await axiosClient.post('/refreshToken',{token:refreshToken});
-        const newAccessToken=res.data.accessToken;
-        Cookies.set('token',newAccessToken);
-        originalRequest.headers['Authorization']='Bearer '+newAccessToken;
+        const res = await axiosClient.post('/refreshToken', {
+          token: refreshToken,
+        });
+        const newAccessToken = res.data.accessToken;
+        Cookies.set('token', newAccessToken);
+        originalRequest.headers['Authorization'] = 'Bearer ' + newAccessToken;
         return axiosClient(originalRequest);
       } catch (error) {
         Cookies.remove('token');

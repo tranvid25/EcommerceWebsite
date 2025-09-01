@@ -49,3 +49,67 @@
   flex-wrap: wrap;
   margin-top: 20px;
 }
+.loadMoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style cho nút */
+.loadMoreBtn {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+/* Loader 3 chấm */
+.dotsLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background-color: #e988f1;
+    border-radius: 50%;
+    display: inline-block;
+    animation: bounce 0.75s infinite ease-in-out both;
+  }
+
+  span:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+
+  span:nth-child(3) {
+    animation-delay: -0.32s;
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+.BtnLoadMore{
+  width: 200px;
+  height: 42px;
+  border-radius: 0;
+  padding: 6px 10px;
+  border: 1px solid rgb(226, 43, 211);
+  background-color: #edc1f8;
+}

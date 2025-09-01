@@ -4,22 +4,35 @@
   padding: 20px 20px;
   @include flex_box_custom(space-between, space-between, 0px);
   flex-direction: column;
-  height: 100vh;
+  height: 95vh;
+
+  .boxContent {
+    flex: 1; // 👈 cho nó chiếm hết chiều cao trống
+    overflow-y: auto; // 👈 nếu sản phẩm nhiều thì cuộn
+  }
+
   .boxButton {
-    width: 90%;
+    width: 100%;
     @include flex_box_custom(center, center, 5px);
     flex-direction: column;
-    position: absolute;
-    bottom: 30px;
-    transform: translateX(-50%);
-    left: 50%;
+    margin-top: auto; // 👈 đẩy xuống cuối container
+    position: relative; // bỏ absolute đi
   }
+
   .content {
     @include flex_box_custom(space-between, flex-end, 20px);
-    width: 100%;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
+  .BtnCart{
+    height: auto;
+    width: 90%;
+  }
+
   .title {
     font-size: 14px;
     font-weight: 300;
   }
 }
+
