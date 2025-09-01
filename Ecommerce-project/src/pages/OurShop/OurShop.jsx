@@ -8,6 +8,7 @@ import { OurShopProvider } from '@/contexts/OurShopProvider';
 import { OurShopContext } from '@/contexts/OurShopProvider';
 import Filter from '@/pages/OurShop/components/Filter';
 import ListProduct from '@/pages/OurShop/components/ListProduct';
+import Footer from '@components/Footer/Footer';
 function OurShop() {
   const { container, functionBox,btnMark } = styles;
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function OurShop() {
           </div>
         </div>
       </Layout>
+      <Footer/>
     </OurShopProvider>
   );
 }

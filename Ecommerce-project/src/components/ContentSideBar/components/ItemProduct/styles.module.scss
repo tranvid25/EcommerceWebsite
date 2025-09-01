@@ -4,12 +4,15 @@
     position: relative;
     margin-top: 40px;
     padding: 20px;
-    @include flex_box_custom(center,flex-start,25px);
+    @include flex_box_custom(flex-start,flex-start,25px);
     img{
         width: 70px;
+        height: 70px;
+        object-fit: cover;
+        flex-shrink: 0
     }
     .content{
-        @include flex_box_custom(center,flex-start,10px);
+        @include flex_box_custom(flex-start,flex-start,10px);
         flex-direction: column;
     }
     .Close{

@@ -73,6 +73,9 @@
   }
   margin-bottom: 5px;
 }
+.isActiveSize{
+    border:1px solid $primary_color !important;
+}
 .textCenter {
   text-align: center;
 }
@@ -87,6 +90,12 @@
   flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 20px;
+}
+.btnClear{
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .containerList {
