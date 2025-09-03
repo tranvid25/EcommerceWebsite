@@ -7,7 +7,10 @@ const getCart=async(userId)=>{
 };
 const deleteItem=async(data)=>{
     return await axiosClient.delete(`/cart/deleteItem`,{data});
-}
+};
+const deleteCart=async(data)=>{
+    return await axiosClient.delete(`/cart/delete`,{data});
+};
 export{
-    Addcart,getCart,deleteItem
+    Addcart,getCart,deleteItem,deleteCart
 };

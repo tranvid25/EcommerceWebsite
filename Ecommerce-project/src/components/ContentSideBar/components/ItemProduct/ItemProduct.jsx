@@ -3,10 +3,11 @@ import styles from './styles.module.scss';
 import { IoMdClose } from 'react-icons/io';
 import { deleteItem } from '@/apis/cartServie';
 import { SideBarContext } from '@/contexts/SideBarProvider';
+import Loader from '@components/Loading/Loading';
 function ItemProduct({
   src,nameProduct,priceProduct,skuProduct,sizeProduct,quantity,productId,userId
 }) {
-  const { container, content, price, Close } = styles;
+  const { container, content, price, Close,overlayLoading } = styles;
   const [isDelete,setIsDelete]=useState(false);
   const {handleListProduct}=useContext(SideBarContext);
   const handleRemoveItem=()=>{
@@ -37,6 +38,7 @@ function ItemProduct({
         <div className={price}>{' '}{quantity}x${priceProduct}</div>
         <div>SKU:{skuProduct}</div>
       </div>
+      {isDelete && (<div className={overlayLoading}><Loader/></div>)}
     </div>
   );
 }

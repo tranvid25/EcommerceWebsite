@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './styles.module.scss'
-function SelectBox({ options, getValue,type }) {
+import styles from './styles.module.scss';
+function SelectBox({ options, getValue, type, defaultValue }) {
   return (
-    <select onChange={(e)=>getValue(e.target.value,type)}>
+    <select onChange={(e) => getValue(e.target.value, type)}
+    value={defaultValue}>
       {options.map((option) => {
         return (
           <option key={option.value} value={option.value}>
