@@ -7,7 +7,7 @@ export const StoreContext = createContext();
 export const StoreContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [userId, setUserId] = useState(Cookies.get('userId') || null);
-
+  
   const handleLogout = () => {
     Cookies.remove('token');
     Cookies.remove('refreshToken');

@@ -1,26 +1,38 @@
 import Cookies from 'js-cookie';
-import { Children, createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { getCart } from '@/apis/cartServie';
 
 export const SideBarContext = createContext();
+
 export const SideBarProvider = ({ children }) => {
+  const userId=Cookies.get('userId');
   const [isOpen, setIsOpen] = useState(false);
-  const [listProduct,setListProduct]=useState([]);
-  const [type,setType]=useState('');
- const handleListProduct=(userId,type)=>{
-  if(userId && type==='cart')
-  {
-    getCart(userId)
-    .then((res)=>{
-      setListProduct(res.data.data)
-    })
-    .catch((err)=>{
+  const [listProduct, setListProduct] = useState([]);
+  const [type, setType] = useState('');
+
+  const handleListProduct = (userId, type) => {
+    if (!userId) {
       setListProduct([]);
-    });
-  }
- }
-  
-  const value={isOpen,setIsOpen,type,setType,handleListProduct,listProduct};
+      return;
+    }
+    if (type === 'cart') {
+      getCart(userId)
+        .then((res) => setListProduct(res.data.data))
+        .catch(() => setListProduct([]));
+    }
+  };
+
+  const value = {
+    isOpen,
+    setIsOpen,
+    type,
+    setType,
+    handleListProduct,
+    listProduct,
+    setListProduct, 
+    userId// thêm cho tiện reset cart
+  };
+
   return (
     <SideBarContext.Provider value={value}>
       {children}

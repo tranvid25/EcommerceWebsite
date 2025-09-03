@@ -15,8 +15,8 @@ function App() {
       <ToastProvider>
         <AppLoader>
           <SideBarProvider>
-            <SideBar />
             <BrowserRouter>
+              <SideBar />
               <Routes>
                 {routers.map((item, index) => (
                   <Route

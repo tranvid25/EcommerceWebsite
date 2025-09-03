@@ -1,30 +1,53 @@
-// Loading.jsx
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import React from 'react';
+import styled from 'styled-components';
 
-function Loading() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const { glitch } = styles;
-
-  if (loading) {
-    return (
-      <div className="loader">
-        <div data-glitch="Loading..." className={glitch}>
-          Loading...
-        </div>
-      </div>
-    );
-  }
-
-  return null; // sau 2s thì ẩn đi
+const Loader = () => {
+  return (
+    <StyledWrapper>
+      <svg viewBox="25 25 50 50">
+        <circle r={20} cy={50} cx={50} />
+      </svg>
+    </StyledWrapper>
+  );
 }
 
-export default Loading;
+const StyledWrapper = styled.div`
+  svg {
+   width: 3.25em;
+   transform-origin: center;
+   animation: rotate4 2s linear infinite;
+  }
+
+  circle {
+   fill: none;
+   stroke: hsl(214, 97%, 59%);
+   stroke-width: 2;
+   stroke-dasharray: 1, 200;
+   stroke-dashoffset: 0;
+   stroke-linecap: round;
+   animation: dash4 0.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate4 {
+   100% {
+    transform: rotate(360deg);
+   }
+  }
+
+  @keyframes dash4 {
+   0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+   }
+
+   50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+   }
+
+   100% {
+    stroke-dashoffset: -125px;
+   }
+  }`;
+
+export default Loader;
