@@ -1,9 +1,5 @@
 import React, { useContext, useState } from 'react';
 import styles from './styles.module.scss';
-import carticon from '@icon/carticon.svg';
-import hearticon from '@icon/hearticon.svg';
-import reloadicon from '@icon/reloadicon.svg';
-import truckicon from '@icon/truckicon.svg';
 import cls from 'classnames';
 import Button from '@components/Button/Button';
 import { OurShopContext } from '@/contexts/OurShopProvider';
@@ -12,6 +8,10 @@ import { SideBarContext } from '@/contexts/SideBarProvider';
 import { ToastContext } from '@/contexts/ToastProvider';
 import { toast } from 'react-toastify';
 import { Addcart } from '@/apis/cartServie';
+import { FiEye } from "react-icons/fi";
+import { BsCart3 } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
+import { TfiReload } from "react-icons/tfi";
 function ProductItem({
   src,
   prevSrc,
@@ -24,7 +24,7 @@ function ProductItem({
   const [sizeChoose, setSizeChoose] = useState('');
   const isShowGrid = context?.isShowGrid ?? true; // default true
   const userId = Cookies.get('userId');
-  const { setIsOpen, setType,handleListProduct } = useContext(SideBarContext);
+  const { setIsOpen, setType,handleListProduct,setDetailProduct } = useContext(SideBarContext);
   const {} = useContext(ToastContext);
   const {
     boxImg,
@@ -47,6 +47,11 @@ function ProductItem({
     isActiveSize,
     btnClear,
   } = styles;
+  const handleShowDetailProduct=()=>{
+    setIsOpen(true);
+    setType('detail');
+    setDetailProduct(details)
+  }
   const handleChooseSize = (size) => {
     setSizeChoose(size);
   };
@@ -96,16 +101,16 @@ function ProductItem({
             })}
           >
             <div className={boxIcon}>
-              <img src={carticon} alt='' />
+              <BsCart3 />
             </div>
             <div className={boxIcon}>
-              <img src={hearticon} alt='' />
+              <FaRegHeart />
             </div>
             <div className={boxIcon}>
-              <img src={reloadicon} alt='' />
+              <TfiReload />
             </div>
-            <div className={boxIcon}>
-              <img src={truckicon} alt='' />
+            <div className={boxIcon} onClick={handleShowDetailProduct}>
+              <FiEye />
             </div>
           </div>
 

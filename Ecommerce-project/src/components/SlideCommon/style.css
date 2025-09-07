@@ -1,0 +1,28 @@
+.slick-prev{
+    color: hsl(0, 1%, 77%);
+    left: 5px;
+ 
+    z-index: 1;
+}
+.slick-prev:hover{
+    
+    padding-left: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #cac8c8;
+    opacity: 0.5;
+    
+}
+.slick-next{
+    color:#c5c4c4;
+    right: 5px;
+}
+.slick-next:hover{
+    padding: 3px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #cac8c8;
+    opacity: 0.5;
+}

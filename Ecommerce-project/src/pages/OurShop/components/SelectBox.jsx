@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './styles.module.scss';
 function SelectBox({ options, getValue, type, defaultValue }) {
+  const {containerSelect}=styles;
   return (
-    <select onChange={(e) => getValue(e.target.value, type)}
+    <select  className={containerSelect} onChange={(e) => getValue(e.target.value, type)}
     value={defaultValue}>
       {options.map((option) => {
         return (

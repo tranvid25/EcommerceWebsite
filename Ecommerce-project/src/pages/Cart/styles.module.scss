@@ -256,3 +256,19 @@
     }
   }
 }
+.boxEmptyCart{
+  @include flex_box_custom(center,center,15px);
+  flex-direction: column;
+  color: black;
+  .textEmpty{
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  button{
+    width: 180px;
+    &:hover{
+      width: 180px;
+    }
+  }
+}
