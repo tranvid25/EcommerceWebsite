@@ -8,6 +8,7 @@ import Compare from '@components/ContentSideBar/Compare/Compare';
 import Cart from '@components/ContentSideBar/Cart/Cart';
 import Heart from '@components/ContentSideBar/Heart/Heart';
 import { useNavigate } from 'react-router-dom';
+import DetailProduct from '@components/ContentSideBar/detailProduct/DetailProduct';
 function SideBar() {
   const { overlay, container, sideBar, slideSideBar, boxIcon } = styles;
   const { isOpen, setIsOpen,type } = useContext(SideBarContext);
@@ -38,6 +39,7 @@ function SideBar() {
         {type === 'cart' && <div><Cart/></div>}
         {type === 'login' && <Login/>}
         {type === 'search' && <div>Đây là search</div>}
+        {type === 'detail' && <DetailProduct></DetailProduct>}
       </div>
     </div>
   );

@@ -1,0 +1,7 @@
+.slide{
+    position: relative;
+}
+.slide img {
+  border-radius: 8px; /* 👈 bo góc 8px */
+  object-fit: cover;  /* giúp ảnh cắt gọn gàng */
+}
