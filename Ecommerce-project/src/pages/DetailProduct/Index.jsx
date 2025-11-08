@@ -4,14 +4,16 @@ import styles from './styles.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
-import Content1 from '@/pages/DetailProduct/components/content1';
+
 import Layout from '@components/Layout/Layout';
 import SlideImage from '@components/SlideImage/SlideImage';
-import Content2 from '@/pages/DetailProduct/components/Content2';
+
 import { getProductDetail } from '@/apis/productsService';
 import { getRelatedProduct } from '@/apis/productsService';
 import Related from '@components/ProductRelated/Related';
 import SliderCommon from '@components/SlideCommon/SliderCommon';
+import Content1 from './components/Content1';
+import Content2 from './components/Content2';
 
 function Index() {
   const {
