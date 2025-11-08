@@ -1,0 +1,64 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+
+.container{
+    width: 100%;
+    .title {
+    @include flex_box_custom(flex-start, center, 5px);
+    padding: 9px 15px;
+    color: #404040;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      color: #7c7c7c;
+    }
+  }
+  .isActive {
+    background-color: #f7f7f7;
+  }
+  .contentMenu {
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 0px 20px;
+    display: flex;
+    gap: 10px;
+  }
+  .isVisibility {
+    padding: 20px;
+    height: auto;
+  }
+  .borderBottom {
+    border-bottom: 1px solid rgb(235, 232, 232);
+  }
+  .rate{
+    display: flex;
+    gap: 7px;
+  }
+  .rating{
+    display: flex;
+  }
+  .review{
+    @include flex_box_custom(left,left,5px);
+    flex-direction: column;
+    textarea{
+        height: 250px;
+    }
+  }
+  .username{
+    input{
+        height: 30px;
+    }
+  }
+  .email{
+    input{
+        height: 30px;
+    }
+  }
+  .checkbox{
+    @include flex_box_custom(left,left,5px);
+  }
+  .btnSubmit{
+    width: 100px;
+  }
+}

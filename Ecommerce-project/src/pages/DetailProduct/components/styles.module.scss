@@ -1,0 +1,153 @@
+@import '@styles/mixins.module.scss';
+@import '@styles/variable.module.scss';
+
+.content1 {
+  width: 100%;
+  @include flex_box_custom(center, left, 5px);
+  flex-direction: column;
+  .title {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .price {
+    color: $secondary_color;
+    font-size: 20px;
+  }
+  .description {
+    color: $sub_color;
+  }
+  .boxSize {
+    width: 100%;
+    @include flex_box_custom(left, center, 5px);
+    .size {
+      padding-top: 5px;
+      padding-left: 7px;
+      padding-right: 7px;
+      padding-bottom: 5px;
+      border: 1px solid gray;
+    }
+    .sizeActive {
+      border: 1px solid blue;
+    }
+  }
+  .btnAdd {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    .btnQuantity {
+      width: 20%;
+      @include flex_box_custom(center, center, 10px);
+      opacity: 0.4;
+      border: 1px solid gray;
+      transition: opactiy 0.2 ease;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+
+      .sl {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 20px;
+        padding: 11px;
+        border-left: 1px solid gray;
+        border-right: 1px solid gray;
+        cursor: pointer;
+
+        span {
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+        }
+
+        .inputSL {
+          border: none;
+          outline: none;
+          text-align: center;
+          width: 10px;
+          font-size: 16px;
+          padding: 0;
+          background: transparent;
+
+          &:focus {
+            border: none;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+.content2 {
+  width: 100%;
+  margin-top: 20px;
+  .boxIcon {
+    padding-top: 20px;
+    @include flex_box_custom(left, center, 20px);
+    .icon {
+      border: 1px solid #cfcbcb;
+      padding-top: 8px;
+      padding-bottom: 7px;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 28px;
+    }
+  }
+  .containerMethods {
+    margin-top: 30px;
+    
+    @include flex_box_custom(center, center, 10px);
+    flex-direction: column;
+    .methodBox {
+      width: 93%;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+    }
+
+    .titleMethods {
+      width: 90%;
+      position: absolute;
+      top: -12px; // đẩy chữ lên đè viền
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff; // che border phía sau
+      padding: 0 10px;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      span {
+        color: green;
+      }
+    }
+
+    .boxImgMethods {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .imgMethods {
+      max-height: 40px;
+      max-width: 35px;
+      object-fit: contain;
+      padding: 5px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+    .textSecure{
+      color: #cfcbcb;
+      font-size: 15px;
+    }
+  }
+}

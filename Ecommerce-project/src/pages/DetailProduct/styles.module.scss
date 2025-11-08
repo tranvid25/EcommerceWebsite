@@ -1,0 +1,45 @@
+@import '@styles/mixins.module.scss';
+@import '@styles/variable.module.scss';
+
+.container {
+  @include flex_box_custom(center, center, 10px);
+  flex-direction: column;
+  width: 100%;
+  padding-top: 83px;
+  .functionBox {
+    width: 100%;
+    @include flex_box_custom(space-between, center, 0px);
+    padding-bottom: 30px;
+  }
+  .parent {
+    width: 100%;
+    @include flex_box_custom(unset, flex-start, 20px);
+    .boximg {
+      max-width: 490px;
+    }
+    .content {
+      width: 55%;
+      .contentLine{
+        padding-top: 10px;
+        width: 100%;
+        @include flex_box_custom(left,center,5px);
+        .line{
+          height: 1px;
+          width: 100%;
+          background-color:$secondary_color;
+          opacity: 0.2;
+        }
+        .textLine{
+          font-size: 13px;
+          font-weight: 200;
+          color: $primary_color;
+        }
+      }
+    }
+
+  }
+  .boxRelated{
+    padding-top: 20px;
+    width: 100%;
+  }
+}

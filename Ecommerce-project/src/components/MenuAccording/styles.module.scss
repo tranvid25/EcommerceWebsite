@@ -1,0 +1,46 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixins.module.scss';
+.container {
+  width: 100%;
+  .title {
+    @include flex_box_custom(flex-start, center, 5px);
+    padding: 9px 15px;
+    color: #404040;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      color: #7c7c7c;
+    }
+  }
+  .isActive {
+    background-color: #f7f7f7;
+  }
+  .contentMenu {
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 0px 20px;
+  }
+  .isVisibility {
+    padding: 20px;
+    height: auto;
+  }
+  .borderBottom {
+    border-bottom: 1px solid rgb(235, 232, 232);
+  }
+  .size {
+    color: $secondary_color;
+    @include flex_box_custom(left, center, 250px);
+    .sizeContent {
+        @include flex_box_custom(center,center,10px);
+    }
+  }
+  .material{
+    @include flex_box_custom(left,center,210px);
+    color: $secondary_color;
+  }
+  .color{
+    @include flex_box_custom(left,center,240px);
+    color: $secondary_color;
+  }
+}
