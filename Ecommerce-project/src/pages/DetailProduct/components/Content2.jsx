@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import Button from '@components/Button/Button';
 import { IoIosHeartEmpty } from 'react-icons/io';
 import { TfiReload } from 'react-icons/tfi';
-import Index from '@components/MenuAccording';
+import Index from '@components/MenuAccording/Index';
 import Review from '@components/Review/Review';
 
 function Content2({ data, userId, listProductCart, setIsOpen, setType }) {
