@@ -8,7 +8,7 @@ import SideBar from '@components/SideBar/SideBar';
 import { SideBarProvider } from '@/contexts/SideBarProvider';
 import ToastProvider from '@/contexts/ToastProvider';
 import { StoreContextProvider } from '@/contexts/storeProvider';
-
+import '@splidejs/react-splide/css'; 
 function App() {
   return (
     <StoreContextProvider>

@@ -12,6 +12,8 @@ import { FiEye } from "react-icons/fi";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { TfiReload } from "react-icons/tfi";
+import { useNavigate } from 'react-router-dom';
+
 function ProductItem({
   src,
   prevSrc,
@@ -19,13 +21,18 @@ function ProductItem({
   price,
   details,
   IsHomepage = true,
+  slideItem = false
 }) {
   const context = useContext(OurShopContext);
   const [sizeChoose, setSizeChoose] = useState('');
-  const isShowGrid = context?.isShowGrid ?? true; // default true
+  const isShowGrid = context?.isShowGrid ?? true;
+  const isGrid = slideItem ? true : isShowGrid;
+
   const userId = Cookies.get('userId');
-  const { setIsOpen, setType,handleListProduct,setDetailProduct } = useContext(SideBarContext);
+  const { setIsOpen, setType, handleListProduct, setDetailProduct } = useContext(SideBarContext);
   const {} = useContext(ToastContext);
+  const navigate = useNavigate();
+
   const {
     boxImg,
     showImageHover,
@@ -47,18 +54,30 @@ function ProductItem({
     isActiveSize,
     btnClear,
   } = styles;
-  const handleShowDetailProduct=()=>{
+
+  const handleShowDetailProduct = (e) => {
+    e.stopPropagation(); // tránh trigger click cha
     setIsOpen(true);
     setType('detail');
-    setDetailProduct(details)
-  }
+    setDetailProduct(details);
+  };
+
+  const handeleNavigateDetailPage = () => {
+    navigate(`/product/${details._id}`);
+    setDetailProduct(details);
+  };
+
   const handleChooseSize = (size) => {
     setSizeChoose(size);
   };
-  const handleClearSize = () => {
+
+  const handleClearSize = (e) => {
+    e.stopPropagation();
     setSizeChoose('');
   };
-  const handleAddToCart = () => {
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
     if (!userId) {
       setIsOpen(true);
       setType('login');
@@ -76,19 +95,24 @@ function ProductItem({
       size: sizeChoose,
     };
     Addcart(data)
-    .then((res)=>{
-      setIsOpen(true);
-      setType('cart');
-      toast.success(res.data.msg);
-      handleListProduct(userId,'cart');
-    })
-    .catch((err)=>{
-      toast.error('Add product cart to fail')
-    });
+      .then((res) => {
+        setIsOpen(true);
+        setType('cart');
+        toast.success(res.data.msg);
+        handleListProduct(userId, 'cart');
+      })
+      .catch(() => {
+        toast.error('Add product to cart failed');
+      });
   };
+
   return (
-    <div className={cls(container, { [containerList]: !isShowGrid })}>
-      {isShowGrid ? (
+    <div
+      className={cls(container, { [containerList]: !isGrid })}
+      style={{ cursor: 'pointer' }}
+      onClick={handeleNavigateDetailPage}
+    >
+      {isGrid ? (
         // ---- GRID VIEW ----
         <div className={boxImg}>
           <img src={src} alt='' />
@@ -116,14 +140,17 @@ function ProductItem({
 
           {/* info */}
           {!IsHomepage && (
-            <div className={boxSize}>
+            <div className={boxSize} style={{ marginTop: slideItem ? '10px' : undefined }}>
               {details.size.map((item, index) => (
                 <div
                   key={index}
                   className={cls(size, {
                     [isActiveSize]: sizeChoose === item.name,
                   })}
-                  onClick={() => handleChooseSize(item.name)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleChooseSize(item.name);
+                  }}
                 >
                   {item.name}
                 </div>
@@ -131,19 +158,15 @@ function ProductItem({
             </div>
           )}
           {sizeChoose && (
-            <div className={btnClear} onClick={() => handleClearSize()}>
+            <div className={btnClear} onClick={handleClearSize}>
               Clear
             </div>
           )}
-          <div
-            className={cls(title, { [textCenter]: !IsHomepage && isShowGrid })}
-          >
+          <div className={cls(title, { [textCenter]: !IsHomepage && isGrid })}>
             {name}
           </div>
           {!IsHomepage && <div className={textCenter}>Brand 01</div>}
-          <div
-            className={cls(priced, { [textCenter]: !IsHomepage && isShowGrid })}
-          >
+          <div className={cls(priced, { [textCenter]: !IsHomepage && isGrid })}>
             ${price}
           </div>
           {!IsHomepage && (
@@ -155,7 +178,6 @@ function ProductItem({
       ) : (
         // ---- LIST VIEW ----
         <div className={boxImg}>
-          {/* ảnh bên trái */}
           <div className={content}>
             <div className={listImg}>
               <img src={src} alt='' className={imageBox} />
@@ -163,7 +185,7 @@ function ProductItem({
             </div>
 
             {/* info bên phải */}
-            <div className={infoBox}>
+            <div className={infoBox} style={{ marginTop: slideItem ? '10px' : undefined }}>
               {!IsHomepage && (
                 <div className={boxSize}>
                   {details.size.map((item, index) => (

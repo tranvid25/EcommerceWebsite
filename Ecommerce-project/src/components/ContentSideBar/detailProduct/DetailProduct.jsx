@@ -58,6 +58,7 @@ function DetailProduct() {
     estimate,
     logo,
     logoitem,
+    sizeActive
   } = styles;
   const handleChooseSize = (size) => {
     setSizeChoose(size);
@@ -108,7 +109,7 @@ function DetailProduct() {
             <div className={boxSize}>
               {detailProduct.size.map((item, index) => (
                 <div
-                  className={size}
+                  className={`${size} ${sizeChoose === item.name ? styles.sizeActive : ''}`}
                   key={index}
                   onClick={() => handleChooseSize(item.name)}
                 >

@@ -6,6 +6,13 @@ const getProduct=async(query)=>{
     const res=await axiosClient.get(`/product?sortType=${sortType}&page=${page}&${queryLimit}`);
     return res.data;
 }
+const getProductDetail=async(id)=>{
+    return await axiosClient.get(`/product/${id}`);
+}
+const getRelatedProduct=async(id)=>{
+    const res= await axiosClient.get(`/related-products/${id}`);
+    return res.data.relatedProducts;
+}
 export{
-    getProduct
+    getProduct,getProductDetail,getRelatedProduct
 }
