@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Copy the assets/styles directory explicitly to ensure all styles are available
+COPY src/assets/Styles/ src/assets/Styles/
+
 # Build the application
 RUN npm run build
 
