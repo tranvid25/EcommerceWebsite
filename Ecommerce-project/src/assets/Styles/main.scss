@@ -1,5 +1,4 @@
-@use './variable.module';
-@use './mixins.module';
-@use './global.module';
-
-/* Add your CSS or SCSS rules below */
+@import 'normalize.css';
+@import './variable.module';
+@import './mixins.module';
+@import './global.module';
