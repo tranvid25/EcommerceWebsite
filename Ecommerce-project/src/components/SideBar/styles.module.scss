@@ -1,4 +1,5 @@
-@use '@styles/variable.module';
+
+
 .container {
   position: relative;
   .overlay {
@@ -26,6 +27,7 @@
     transform: translateX(0);
   }
   .boxIcon {
+    @include _mixins.flex_box_custom(center, center, 0px);
     position: absolute;
     top: 25px;
     left: -60px;
